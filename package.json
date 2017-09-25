@@ -1,0 +1,50 @@
+{
+  "name": "toast",
+  "version": "1.0.0",
+  "description": "Lightweight javascript toast notifications.",
+  "main": "toast.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akinjide/toast.git"
+  },
+  "keywords": [
+    "Toast",
+    "ToastJS",
+    "toast.js"
+  ],
+  "author": "Akinjide Bankole <r@akinjide.me>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akinjide/toast/issues"
+  },
+  "homepage": "https://github.com/akinjide/toast#readme",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-bytediff": "^1.0.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-load-utils": "0.0.4",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-task-listing": "^1.0.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "karma": "^1.7.0",
+    "karma-coverage": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-qunit": "^1.2.1",
+    "phantomjs": "^2.1.7",
+    "plato": "^1.7.0",
+    "qunitjs": "^2.4.0"
+  }
+}

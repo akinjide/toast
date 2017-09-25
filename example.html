@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>toast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  <link href="toast.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background-color: #F2F2F2;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 6em;
+      color: #EC9A29;
+    }
+
+    input[type="text"]{font: 15px/24px "Open Sans", Arial, sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+
+    :focus{outline: none;}
+    .col-3{float: left; width: 27.33%; margin: 50px 3% 20px 3%; position: relative;}
+
+    .effect-15{border: 0; padding: 7px 15px; border: 1px solid #ccc; position: relative; background: transparent;}
+    .effect-15 ~ .focus-bg:before,
+    .effect-15 ~ .focus-bg:after{content: ""; position: absolute; left: 50%; top: 50%; width: 0; height: 0; background-color: #ededed; transition: 0.3s; z-index: -1;}
+    .effect-15:focus ~ .focus-bg:before{transition: 0.3s; width: 50%; left: 0; top: 0; height: 100%;}
+    .effect-15 ~ .focus-bg:after{left: auto; right: 50%; top: auto; bottom: 50%;}
+    .effect-15:focus ~ .focus-bg:after{transition: 0.3s; width: 50%; height: 100%; bottom: 0; right: 0;}
+
+    button {
+      border: 1px solid #777;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.4);
+      font-weight: bold;
+      background: transparent;
+      padding: 16px 32px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>toast</h1>
+
+    <div class="col-3">
+      <input class="effect-15" type="text" id="message" placeholder="type something here!"/>
+      <span class="focus-bg"></span>
+    </div>
+    <button id="toast-btn">Show Me</button>
+  </div>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="toast.js"></script>
+  <script type="text/javascript">
+
+    $(function() {
+      // customize it with your own options
+      var options = {
+        text: 'Are you the six fingered man?',
+        showDuration: 3000,
+        target: 'body'
+      };
+
+      // to get it started, instantiate a copy of
+      // config passing our custom options
+      toast.config(options);
+
+
+      // now you can fire off a toast just calling
+      // our new toast passing a string, like this:
+      // toast.dark()
+
+      //   Demo:
+      $('body')
+        .queue(function(next) {
+          toast.dark();
+          next();
+        }).delay(100)
+        .queue(function(next) {
+          toast.warn('Inconceivable!');
+          next();
+        })
+        .delay(500)
+        .queue(function(next) {
+          toast.error('I do not think that means what you think it means!');
+          next();
+        })
+        .delay(500)
+        .queue(function(next) {
+          toast.info('Have fun storming the castle!');
+          next();
+        });
+
+
+      $('#toast-btn').click(function() {
+        toast.dark($('#message').val());
+      });
+
+      // fires off a toast when you hit enter
+      $('#message').keypress(function(e) {
+        if (e.which == 13) {
+          toast.dark($('#message').val());
+          return false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
