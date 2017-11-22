@@ -104,7 +104,7 @@
     $(function() {
       // customize it with your own options
       var options = {
-        text: 'Are you the six fingered man?',
+        text: 'Mommy is that you??',
         showDuration: 3000,
         target: 'body'
       };
@@ -126,22 +126,23 @@
           next();
         }).delay(100)
         .queue(function(next) {
-          toast.warn('Inconceivable!');
+          toast.warn('File Not Found');
           next();
         })
         .delay(500)
         .queue(function(next) {
-          toast.error('I do not think that means what you think it means!');
+          toast.error('Choose something else to play with');
           next();
         })
         .delay(500)
         .queue(function(next) {
-          toast.info('Have fun storming the castle!');
+          toast.info('I’m a web addict');
           next();
         });
 
 
       $buttons.forEach(button => button.addEventListener('click', handler));
+
       function handler (e) {
         toast[this.textContent]($('#message').val());
       }
