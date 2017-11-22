@@ -64,7 +64,9 @@
           text: 'yo! toast',
           tapToDismiss: true,
           bgColor: 'rgba(0, 0, 10, 0.7)',
-          toastClass: '.toast'
+          toastClass: 'toast',
+          closeButton: true,
+          closeClass: 'closer'
         };
       }
 
@@ -87,16 +89,32 @@
 
         return function (text, type) {
           $('<div/>')
-            .addClass('toast')
+            .addClass((opts.toastClass || 'toast'))
             .prependTo($(opts.target))
             .text(text || opts.text)
             .queue(function(next) {
+
+              if (opts.closeClass || opts.closeButton) {
+                $(this).addClass('closer')
+
+                $(this)
+                  .on('click', function(e) {
+                    $(this).remove();
+                  });
+              }
+
+              next();
+
+            })
+            .queue(function(next) {
+
+              var topOffset = 15;
+
               $(this).css({
                 'opacity': 1,
                 'background-color': colors(type) || opts.bgColor
               });
 
-              var topOffset = 15;
               $('.toast').each(function() {
                 var $this = $(this);
                 var height = $this.outerHeight();
@@ -114,9 +132,11 @@
               });
 
               next();
+
             })
             .delay(opts.showDuration)
             .queue(function(next) {
+
               var $this = $(this);
               var width = $this.outerWidth() + 20;
 
@@ -126,11 +146,14 @@
               });
 
               next();
+
             })
             .delay(600)
             .queue(function(next) {
+
               $(this).remove();
               next();
+
             });
         };
       }
@@ -143,17 +166,8 @@
       // if (opts.position.indexOf('left') > -1) {
       //   $this.css('left', '15px');
       // }
-      //
-      // closeButton: false,
-      // closeClass: '.closer',
-      // $closer
-      //   .css('cursor', 'pointer')
-      //   .on('click', function(e) {
-      //     e.preventDefault();
-      //     e.stopPropagation();
-      //
-      //     return true;
-      //   });
+
+
 
     })();
   });

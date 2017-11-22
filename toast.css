@@ -13,11 +13,13 @@
   transition: all 0.4s ease-out;
 }
 
+.left { left: 15px; }
+
 .closer {
   background-image: url("close.svg");
   background-position: right center;
   background-repeat: no-repeat;
-  background-size: 2em;
+  background-size: 3em;
   background-clip: padding-box;
   z-index: 2;
 }
